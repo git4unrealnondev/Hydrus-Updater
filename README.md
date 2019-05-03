@@ -3,6 +3,8 @@ A shell script to download and build Hydrus (https://github.com/hydrusnetwork/hy
 
 Tested and works with Ubuntu 18.04.2 LTS
 
+Download the Shell file and unpack
+
 To enable execution (on linux machines)
 
 sudo chmod +x HYUpdater.sh
