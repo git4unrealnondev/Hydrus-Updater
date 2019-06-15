@@ -28,7 +28,7 @@ try:
     from pip import main as pipmain
 except ImportError:
     from pip._internal import main as pipmain
-PythonPackages = ['virtualenv', 'beautifulsoup4', 'chardet', 'html5lib', 'lxml', 'nose', 'numpy', 'opencv-python', 'six', 'Pillow', 'psutil', 'pyOpenSSL', 'PyYAML', 'requests', 'Send2Trash', 'service-identity', 'Twisted', 'lz4', 'pylzma', 'PySocks', 'matplotlib', 'wxPython']
+PythonPackages = ['virtualenv', 'beautifulsoup4', 'chardet', 'html5lib', 'lxml', 'nose', 'numpy', 'opencv-python', 'six', 'Pillow', 'psutil', 'pyOpenSSL', 'PyYAML', 'requests', 'Send2Trash', 'service-identity', 'Twisted', 'lz4', 'pylzma', 'PySocks', 'matplotlib', 'wxPython', 'pathlib2']
 
 for i in PythonPackages:
 	if i in installed_packages:
@@ -80,10 +80,12 @@ for f in ./hydrus*; do
 			cd ./hydrus*
 			sudo rm -r ./venv
 			mkdir venv
-			##sudo chmod -R 775 ./venv
+			sudo chown $USER:$USER -R ./venv
 			python3 -m venv ./venv
 			. venv/bin/activate
-			pip3 install beautifulsoup4 chardet html5lib lxml nose numpy opencv-python six Pillow psutil PyOpenSSL PyYAML requests Send2Trash service_identity twisted lz4 pylzma pysocks matplotlib wxPython
+			pip3 install wheel
+			python3 setup.py bdist_wheel 
+			pip3 install beautifulsoup4 chardet html5lib lxml nose numpy opencv-python six Pillow psutil PyOpenSSL PyYAML requests Send2Trash service_identity twisted lz4 pylzma pysocks matplotlib pathlib2 wxPython 
 			python ./client.py
 			deactivate
 
@@ -124,12 +126,17 @@ for f in ./hydrus*; do
 				mkdir 'hydrus network'
 				sudo cp -r ./hydrusnetwork*/* ./'hydrus network' && sudo rm -R ./hydrusnetwork*/
 				cd ./hydrus*
+				sudo chown $USER:$USER -R ./venv
 				sudo rm -r ./venv
 				mkdir venv
 				##sudo chmod -R 775 ./'hydrus network'
 				python3 -m venv ./venv
+				sudo chmod -R 775 ./venv
+
 				. venv/bin/activate
-				pip3 install beautifulsoup4 chardet html5lib lxml nose numpy opencv-python six Pillow psutil PyOpenSSL PyYAML requests Send2Trash service_identity twisted lz4 pylzma pysocks matplotlib wxPython
+				pip3 install wheel
+				python3 setup.py bdist_wheel 
+				pip3 install beautifulsoup4 chardet html5lib lxml nose numpy opencv-python six Pillow psutil PyOpenSSL PyYAML requests Send2Trash service_identity twisted lz4 pylzma pysocks matplotlib pathlib2 wxPython 
 				python ./client.py
 				deactivate
 
